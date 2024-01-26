@@ -1,0 +1,7 @@
+# HSTS 1.0 Known Hosts database for GNU Wget.
+# Edit at your own risk.
+# <hostname>	<port>	<incl. subdomains>	<created>	<max-age>
+tinytex.yihui.org	0	0	1706227790	31536000
+www.texlive.info	0	1	1706227768	15552000
+yihui.org	0	0	1706227790	63072000
+github.com	0	1	1706227716	31536000
