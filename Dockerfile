@@ -19,7 +19,7 @@ RUN apk update && apk add bash ghostscript texinfo curl ca-certificates wget gpg
 RUN chown -R user /home/linuxbrew/.linuxbrew
 USER user
 
-RUN /home/linuxbrew/.linuxbrew/bin/brew install code-server micro zsh
+RUN /home/linuxbrew/.linuxbrew/bin/brew install code-server micro zsh jupyterlab
 USER root
 ARG DEBIAN_FRONTEND=noninteractive
 
