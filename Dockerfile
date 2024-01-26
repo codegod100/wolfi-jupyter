@@ -59,10 +59,6 @@ ENV dpkgArch="amd64"
 RUN ./download.sh
 RUN ./run.sh
 
-# Copy bashrc file to user
-RUN cp /root/.bashrc /home/$USERNAME/.bashrc && \
-    chown $USERNAME:$USERNAME /home/$USERNAME/.bashrc && \
-    ln -s /home/$USERNAME/.bashrc /home/$USERNAME/.profile
 
 # Update wsl.conf file
 RUN sed -i "s/root/$USERNAME/g" /etc/wsl.conf
