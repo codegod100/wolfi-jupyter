@@ -34,7 +34,7 @@ export PIP_BREAK_SYSTEM_PACKAGES=1
 ## Install facets
 cd /tmp
 git clone https://github.com/PAIR-code/facets.git
-/home/linuxbrew/.linuxbrew/bin/jupyter nbclassic-extension install facets/facets-dist/ --sys-prefix
+pixi run nbclassic-extension install facets/facets-dist/ --sys-prefix
 cd /
 ## Install code-server extensions
 /home/linuxbrew/.linuxbrew/bin/code-server  --install-extension quarto.quarto

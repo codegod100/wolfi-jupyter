@@ -15,12 +15,8 @@ RUN addgroup -g $GROUP_ID $USERNAME && \
     echo "$USERNAME ALL=(ALL) NOPASSWD:ALL" >> /etc/sudoers.d/$USERNAME && \
     chmod 0440 /etc/sudoers.d/$USERNAME
 
-RUN apk update && apk add bash ghostscript texinfo curl ca-certificates wget gpg git brew pixi coreutils
-RUN chown -R user /home/linuxbrew/.linuxbrew
-USER user
+RUN apk update && apk add bash ghostscript texinfo curl ca-certificates wget gpg git  pixi coreutils
 
-RUN /home/linuxbrew/.linuxbrew/bin/brew install code-server micro zsh jupyterlab
-USER root
 ARG DEBIAN_FRONTEND=noninteractive
 
 ARG QUARTO_VERSION
@@ -54,9 +50,11 @@ COPY wsl-files/wsl.conf /etc/wsl.conf
 
 WORKDIR /root
 
-COPY . .
+COPY download.sh download.sh
+COPY run.sh run.sh
 
 ENV dpkgArch="amd64"
 RUN ./download.sh
 RUN ./run.sh
 
+CMD pixi run zsh
