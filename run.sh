@@ -1,5 +1,6 @@
 #!/bin/bash
 
+/home/linuxbrew/.linuxbrew/bin/brew install code-server
 
 ## Install quarto
 mkdir -p /opt/quarto
@@ -9,7 +10,7 @@ tar -xzf quarto-${QUARTO_VERSION}-linux-${dpkgArch}.tar.gz -C /opt/quarto --no-s
 rm /opt/quarto/bin/tools/pandoc
 ln -s /usr/bin/pandoc /opt/quarto/bin/tools/pandoc
 ## Admin-based install of TinyTeX
-./install-unx.sh
+./install-unx.sh --admin --no-path
 # mv ${HOME}/.TinyTeX /opt/TinyTeX
 # sed -i "s|${HOME}/.TinyTeX|/opt/TinyTeX|g" /opt/TinyTeX/texmf-var/fonts/conf/texlive-fontconfig.conf
 # ln -rs /opt/TinyTeX/bin/$(uname -m)-linux /opt/TinyTeX/bin/linux /opt/TinyTeX/bin/linux/tlmgr path add
@@ -22,7 +23,7 @@ ln -s /usr/bin/pandoc /opt/quarto/bin/tools/pandoc
 /opt/TinyTeX/bin/x86_64-linux/tlmgr install cm-super dvipng
 ## TeX packages specific for nbconvert
 /opt/TinyTeX/bin/x86_64-linux/tlmgr install oberdiek titling
-/opt/TinyTeX/bin/x86_64-linux/tlmgr path add
+# /opt/TinyTeX/bin/x86_64-linux/tlmgr path add
 # chown -R root:${NB_GID} /opt/TinyTeX
 # chmod -R g+w /opt/TinyTeX
 # chmod -R g+wx /opt/TinyTeX/bin
@@ -31,15 +32,15 @@ cp /opt/TinyTeX/texmf-var/fonts/conf/texlive-fontconfig.conf /etc/fonts/conf.d/0
 fc-cache -fsv
 ## Install Python packages
 export PIP_BREAK_SYSTEM_PACKAGES=1
-pip install altair beautifulsoup4 bokeh bottleneck cloudpickle cython dask dill h5py ipympl ipywidgets matplotlib numba numexpr numpy pandas patsy protobuf scikit-image scikit-learn scipy seaborn sqlalchemy statsmodels sympy tables widgetsnbextension xlrd
+pip install altair beautifulsoup4 bokeh bottleneck cloudpickle cython dask dill h5py ipympl ipywidgets matplotlib numba numexpr numpy pandas patsy protobuf scikit-image scikit-learn scipy seaborn sqlalchemy statsmodels sympy tables widgetsnbextension xlrd nbclassic
 ## Install facets
 cd /tmp
 git clone https://github.com/PAIR-code/facets.git
 jupyter nbclassic-extension install facets/facets-dist/ --sys-prefix
 cd /
 ## Install code-server extensions
-code-server --extensions-dir ${CODE_BUILTIN_EXTENSIONS_DIR} --install-extension quarto.quarto
-code-server --extensions-dir ${CODE_BUILTIN_EXTENSIONS_DIR} --install-extension James-Yu.latex-workshop
+code-server  --install-extension quarto.quarto
+code-server  --install-extension James-Yu.latex-workshop
 ## Clean up
 # rm -rf /tmp/*
 # rm -rf /var/lib/apt/lists/*
