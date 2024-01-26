@@ -52,6 +52,8 @@ WORKDIR /root
 
 COPY download.sh download.sh
 COPY run.sh run.sh
+COPY pixi.toml pixi.toml
+COPY pixi.lock pixi.lock
 
 ENV dpkgArch="amd64"
 RUN ./download.sh
