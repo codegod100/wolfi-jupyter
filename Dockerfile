@@ -62,5 +62,5 @@ RUN ./run.sh
 
 # Update wsl.conf file
 # RUN sed -i "s/root/$USERNAME/g" /etc/wsl.conf
-RUN chmod u+s /sbin/su-exec
+# RUN chmod u+s /sbin/su-exec
 
