@@ -32,7 +32,6 @@ fc-cache -fsv
 export PIP_BREAK_SYSTEM_PACKAGES=1
 #pip install altair beautifulsoup4 bokeh bottleneck cloudpickle cython dask dill h5py ipympl ipywidgets matplotlib numba numexpr numpy pandas patsy protobuf scikit-image scikit-learn scipy seaborn sqlalchemy statsmodels sympy  widgetsnbextension xlrd nbclassic
 ## Install facets
-cd /tmp
 git clone https://github.com/PAIR-code/facets.git
 pixi run jupyter nbclassic-extension install facets/facets-dist/ --sys-prefix
 ## Install code-server extensions

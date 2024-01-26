@@ -1,6 +1,6 @@
 FROM cgr.dev/chainguard/wolfi-base
 ARG QUARTO_VERSION=1.3.450
-
+WORKDIR /root
 
 # Create user
 ARG USERNAME=${username:-user}
@@ -48,7 +48,7 @@ COPY wsl-files/wsl.conf /etc/wsl.conf
 
 
 
-WORKDIR /root
+
 
 COPY download.sh download.sh
 COPY run.sh run.sh
