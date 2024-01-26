@@ -34,11 +34,10 @@ export PIP_BREAK_SYSTEM_PACKAGES=1
 ## Install facets
 cd /tmp
 git clone https://github.com/PAIR-code/facets.git
-pixi run nbclassic-extension install facets/facets-dist/ --sys-prefix
-cd /
+pixi run jupyter nbclassic-extension install facets/facets-dist/ --sys-prefix
 ## Install code-server extensions
-/home/linuxbrew/.linuxbrew/bin/code-server  --install-extension quarto.quarto
-/home/linuxbrew/.linuxbrew/bin/code-server  --install-extension James-Yu.latex-workshop
+pixi run code-server  --install-extension quarto.quarto
+pixi run code-server  --install-extension James-Yu.latex-workshop
 ## Clean up
 # rm -rf /tmp/*
 # rm -rf /var/lib/apt/lists/*
