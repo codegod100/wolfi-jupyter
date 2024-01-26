@@ -63,6 +63,4 @@ RUN ./run.sh
 # Update wsl.conf file
 RUN sed -i "s/root/$USERNAME/g" /etc/wsl.conf
 
-# Fix su-exec permissions
-RUN chmod u+s /sbin/su-exec
 
