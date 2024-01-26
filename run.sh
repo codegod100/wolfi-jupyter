@@ -1,6 +1,6 @@
 #!/bin/bash
 
-/home/linuxbrew/.linuxbrew/bin/brew install code-server
+/home/linuxbrew/.linuxbrew/bin/brew install code-server micro
 
 ## Install quarto
 mkdir -p /opt/quarto

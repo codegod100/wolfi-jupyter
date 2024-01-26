@@ -1,12 +1,9 @@
-ARG BUILD_ON_IMAGE=glcr.b-data.ch/jupyterlab/python/base
-ARG PYTHON_VERSION=3.11.6
 ARG QUARTO_VERSION=1.3.450
 ARG CTAN_REPO=https://www.texlive.info/tlnet-archive/2023/12/04/tlnet
-ARG PARENT_IMAGE=cgr.dev/chainguard/wolfi-base
 
-FROM ${PARENT_IMAGE}
+FROM cgr.dev/chainguard/wolfi-base
 
-RUN apk update && apk add bash ghostscript texinfo curl ca-certificates wget gpg python-3.10 py3.10-pip git brew
+RUN apk update && apk add bash ghostscript texinfo curl ca-certificates wget gpg python-3.10 py3.10-pip git brew pixi
 
 ARG DEBIAN_FRONTEND=noninteractive
 
