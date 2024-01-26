@@ -15,7 +15,7 @@ RUN addgroup -g $GROUP_ID $USERNAME && \
     echo "$USERNAME ALL=(ALL) NOPASSWD:ALL" >> /etc/sudoers.d/$USERNAME && \
     chmod 0440 /etc/sudoers.d/$USERNAME
 
-RUN apk update && apk add bash ghostscript texinfo curl ca-certificates wget gpg git  pixi coreutils posix-libc-utils sudo  
+RUN apk update && apk add bash ghostscript texinfo curl ca-certificates wget gpg git  pixi coreutils posix-libc-utils sudo-rs  
 
 ARG DEBIAN_FRONTEND=noninteractive
 
