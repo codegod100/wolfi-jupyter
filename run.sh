@@ -12,15 +12,15 @@ ln -s /usr/bin/pandoc /opt/quarto/bin/tools/pandoc
 # mv ${HOME}/.TinyTeX /opt/TinyTeX
 # sed -i "s|${HOME}/.TinyTeX|/opt/TinyTeX|g" /opt/TinyTeX/texmf-var/fonts/conf/texlive-fontconfig.conf
 # ln -rs /opt/TinyTeX/bin/$(uname -m)-linux /opt/TinyTeX/bin/linux /opt/TinyTeX/bin/linux/tlmgr path add
-/root/.TinyTeX/bin/x86_64-linux/tlmgr update --self
+/homer/user/.TinyTeX/bin/x86_64-linux/tlmgr update --self
 ## TeX packages as requested by the community
-/root/.TinyTeX/bin/x86_64-linux/tlmgr install $(cat pkgs-yihui.txt | tr '\n' ' ')
+/home/user/.TinyTeX/bin/x86_64-linux/tlmgr install $(cat pkgs-yihui.txt | tr '\n' ' ')
 ## TeX packages as in rocker/verse
-/root/.TinyTeX/bin/x86_64-linux/tlmgr install context pdfcrop
+/home/user/.TinyTeX/bin/x86_64-linux/tlmgr install context pdfcrop
 ## TeX packages as in jupyter/scipy-notebook
-/root/.TinyTeX/bin/x86_64-linux/tlmgr install cm-super dvipng
+/home/user/.TinyTeX/bin/x86_64-linux/tlmgr install cm-super dvipng
 ## TeX packages specific for nbconvert
-/root/.TinyTeX/bin/x86_64-linux/tlmgr install oberdiek titling
+/home/user/.TinyTeX/bin/x86_64-linux/tlmgr install oberdiek titling
 # /root/.TinyTeX/bin/x86_64-linux/tlmgr path add
 # chown -R root:${NB_GID} /root/.TinyTeX
 # chmod -R g+w /root/.TinyTeX
@@ -39,8 +39,4 @@ pixi run code-server  --install-extension quarto.quarto
 pixi run code-server  --install-extension James-Yu.latex-workshop
 ## Clean up
 # rm -rf /tmp/*
-# rm -rf /var/lib/apt/lists/*
-# ${HOME}/.cache
-# ${HOME}/.config
-# ${HOME}/.local 
-# ${HOME}/.wget-hsts
+rm -rf /var/lib/apt/lists/* .cache .config .local .wget-hsts

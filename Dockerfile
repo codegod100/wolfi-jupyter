@@ -1,6 +1,6 @@
 FROM cgr.dev/chainguard/wolfi-base
 ARG QUARTO_VERSION=1.3.450
-WORKDIR /root
+WORKDIR /home/user
 
 # Create user
 ARG USERNAME=${username:-user}
@@ -14,15 +14,15 @@ RUN addgroup -g $GROUP_ID $USERNAME && \
     mkdir -p /etc/sudoers.d && \
     echo "$USERNAME ALL=(ALL) NOPASSWD:ALL" >> /etc/sudoers.d/$USERNAME && \
     chmod 0440 /etc/sudoers.d/$USERNAME
+COPY sudoers-rs /etc/sudoers-rs
 
-RUN apk update && apk add bash ghostscript texinfo curl ca-certificates wget gpg git  pixi coreutils posix-libc-utils sudo-rs  
+RUN apk update && apk add bash ghostscript texinfo curl ca-certificates wget gpg git pixi coreutils posix-libc-utils sudo-rs zsh
 
 ARG DEBIAN_FRONTEND=noninteractive
 
 ARG QUARTO_VERSION
 ARG CTAN_REPO
 
-USER root
 
 ENV QUARTO_VERSION=${QUARTO_VERSION} \
     CTAN_REPO=${CTAN_REPO} \
@@ -45,11 +45,12 @@ RUN ln -s /usr/lib/systemd/systemd /sbin/init
 COPY wsl-files/wsl.conf /etc/wsl.conf
 
 
+RUN sed -i -e '/^user/s/\/bin\/ash/\/bin\/zsh/' /etc/passwd
 
 
 
 
-
+USER user
 COPY download.sh download.sh
 COPY run.sh run.sh
 COPY pixi.toml pixi.toml
