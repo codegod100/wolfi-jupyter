@@ -53,8 +53,8 @@ RUN sudo chown -R user /home/linuxbrew/.linuxbrew /home/linuxbrew/.linuxbrew/bin
 RUN chmod u+w /home/linuxbrew/.linuxbrew /home/linuxbrew/.linuxbrew/bin
 
 USER user
-RUN sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
 RUN brew install zsh
+RUN sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
 COPY download.sh download.sh
 COPY run.sh run.sh
 COPY pixi.toml pixi.toml
