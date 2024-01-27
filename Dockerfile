@@ -48,6 +48,8 @@ RUN sed -i -e '/^user/s/\/bin\/ash/\/bin\/zsh/' /etc/passwd
 
 
 
+RUN sudo chown -R user /home/linuxbrew/.linuxbrew /home/linuxbrew/.linuxbrew/bin
+RUN chmod u+w /home/linuxbrew/.linuxbrew /home/linuxbrew/.linuxbrew/bin
 
 USER user
 RUN brew install zsh
