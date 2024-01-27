@@ -44,7 +44,8 @@ RUN ln -s /usr/lib/systemd/systemd /sbin/init
 COPY wsl-files/wsl.conf /etc/wsl.conf
 
 
-RUN sed -i -e '/^user/s/\/bin\/ash/\/bin\/zsh/' /etc/passwd
+RUN sed -i -e '/^user/s/\/bin\/ash/\/home\/linuxbrew\/\.linuxbrew\/bin\/zsh' /etc/passwd
+
 
 
 
@@ -52,13 +53,17 @@ RUN sudo chown -R user /home/linuxbrew/.linuxbrew /home/linuxbrew/.linuxbrew/bin
 RUN chmod u+w /home/linuxbrew/.linuxbrew /home/linuxbrew/.linuxbrew/bin
 
 USER user
+RUN sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
 RUN brew install zsh
 COPY download.sh download.sh
 COPY run.sh run.sh
 COPY pixi.toml pixi.toml
 COPY pixi.lock pixi.lock
 COPY jupyter bin/jupyter
+RUN chmod +x bin/jupyter
 ENV dpkgArch="amd64"
+COPY code-server bin/code-server
+RUN chmod +x bin/code-server
 RUN ./download.sh
 RUN ./run.sh
 
