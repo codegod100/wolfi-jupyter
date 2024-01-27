@@ -16,8 +16,7 @@ RUN addgroup -g $GROUP_ID $USERNAME && \
     chmod 0440 /etc/sudoers.d/$USERNAME
 COPY sudoers-rs /etc/sudoers-rs
 
-RUN apk update && apk add bash ghostscript texinfo curl ca-certificates wget gpg git pixi coreutils posix-libc-utils sudo-rs zsh
-
+RUN apk update && apk add bash ghostscript texinfo curl ca-certificates wget gpg git pixi coreutils posix-libc-utils sudo-rs brew
 ARG DEBIAN_FRONTEND=noninteractive
 
 ARG QUARTO_VERSION
@@ -28,7 +27,7 @@ ENV QUARTO_VERSION=${QUARTO_VERSION} \
     CTAN_REPO=${CTAN_REPO} \
     BUILD_DATE=${BUILD_START}
 
-ENV PATH=$PATH:/home/user/.TinyTeX/bin/x86_64-linux:/opt/quarto/bin:/home/user/bin
+ENV PATH=$PATH:/home/user/.TinyTeX/bin/x86_64-linux:/opt/quarto/bin:/home/user/bin:/home/linuxbrew/.linuxbrew/bin
 
 
 # Install extra packages
@@ -51,6 +50,7 @@ RUN sed -i -e '/^user/s/\/bin\/ash/\/bin\/zsh/' /etc/passwd
 
 
 USER user
+RUN brew install zsh
 COPY download.sh download.sh
 COPY run.sh run.sh
 COPY pixi.toml pixi.toml
