@@ -44,7 +44,7 @@ RUN ln -s /usr/lib/systemd/systemd /sbin/init
 COPY wsl-files/wsl.conf /etc/wsl.conf
 
 
-RUN sed -i -e '/^user/s/\/bin\/ash/\/home\/linuxbrew\/\.linuxbrew\/bin\/zsh' /etc/passwd
+RUN sed -i -e '/^user/s/\/bin\/ash/\/home\/linuxbrew\/\.linuxbrew\/bin\/zsh/' /etc/passwd
 
 
 
