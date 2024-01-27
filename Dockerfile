@@ -28,6 +28,7 @@ ENV QUARTO_VERSION=${QUARTO_VERSION} \
     BUILD_DATE=${BUILD_START}
 
 ENV PATH=$PATH:/home/user/.TinyTeX/bin/x86_64-linux:/opt/quarto/bin:/home/user/bin:/home/linuxbrew/.linuxbrew/bin
+ENV dpkgArch="amd64"
 
 
 # Install extra packages
@@ -60,10 +61,14 @@ COPY run.sh run.sh
 COPY pixi.toml pixi.toml
 COPY pixi.lock pixi.lock
 COPY jupyter bin/jupyter
-RUN chmod +x bin/jupyter
-ENV dpkgArch="amd64"
+
 COPY code-server bin/code-server
+
+USER root
+RUN chmod +x bin/jupyter
 RUN chmod +x bin/code-server
+
+USER user
 RUN ./download.sh
 RUN ./run.sh
 
