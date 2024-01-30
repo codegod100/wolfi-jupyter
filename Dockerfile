@@ -76,7 +76,7 @@ USER user
 RUN ./download.sh
 RUN ./run.sh
 
-CMD pixi-shell
+CMD pixi shell
 # Update wsl.conf file
 # RUN sed -i "s/root/$USERNAME/g" /etc/wsl.conf
 # RUN chmod u+s /sbin/su-exec
