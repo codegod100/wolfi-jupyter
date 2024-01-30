@@ -56,8 +56,12 @@ RUN chmod u+w /home/linuxbrew/.linuxbrew /home/linuxbrew/.linuxbrew/bin
 USER user
 RUN brew install zsh
 RUN sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
+
 COPY download.sh download.sh
 COPY run.sh run.sh
+RUN chmod +x download.sh
+RUN chmod +x run.sh
+
 COPY pixi.toml pixi.toml
 COPY pixi.lock pixi.lock
 COPY jupyter bin/jupyter
@@ -72,7 +76,7 @@ USER user
 RUN ./download.sh
 RUN ./run.sh
 
-
+CMD pixi-shell
 # Update wsl.conf file
 # RUN sed -i "s/root/$USERNAME/g" /etc/wsl.conf
 # RUN chmod u+s /sbin/su-exec
