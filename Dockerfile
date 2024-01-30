@@ -59,8 +59,6 @@ RUN sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master
 
 COPY download.sh download.sh
 COPY run.sh run.sh
-RUN chmod +x download.sh
-RUN chmod +x run.sh
 
 COPY pixi.toml pixi.toml
 COPY pixi.lock pixi.lock
